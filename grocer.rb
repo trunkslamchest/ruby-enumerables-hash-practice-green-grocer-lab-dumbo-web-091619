@@ -48,9 +48,17 @@ end
 
 
 
-# def apply_clearance(cart)
-#   # code here
-# end
+def apply_clearance(cart)
+			sale_items = cart.reduce({}) { |new_hash, sub_hash|
+				if sub_hash[1][:clearance]
+					sub_hash[1][:price] = sub_hash[1][:price] - (sub_hash[1][:price] * 0.2).round(2)
+				end
+			 new_hash[sub_hash[0]] = sub_hash[1]
+		new_hash
+		}
+
+p sale_items
+end
 
 # def checkout(cart, coupons)
 #   # code here
