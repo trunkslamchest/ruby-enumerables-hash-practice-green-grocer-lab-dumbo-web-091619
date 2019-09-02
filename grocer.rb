@@ -59,7 +59,8 @@ def apply_clearance(cart)
   			food_values[:price] = food_values[:price] - (food_values[:price] * 0.2).round(2)
   		end
 
-	memo[food_keys] = food_values
+	  memo[food_keys] = food_values
+	
 	memo
 	}
 
