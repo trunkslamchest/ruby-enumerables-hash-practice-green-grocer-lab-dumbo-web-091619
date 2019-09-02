@@ -73,6 +73,8 @@ def checkout(cart, coupons)
 
 # p apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
 
-return apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
+# return apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
+
+return consolidate_cart(cart)
 
 end
