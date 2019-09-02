@@ -35,10 +35,10 @@ def apply_coupons(items, coupons)
 					memo_keys[:count] = memo_keys[:count] - hash[:count]
 				end
 
-				if coupons.length >= 2
-					memo_keys[:count] = memo_keys[:count] - hash[:count]
-					hash[:count] += hash[:count]
-				end
+				# if coupons.length >= 2 && memo_keys[:count] >= hash[:count]
+				# 	memo_keys[:count] = memo_keys[:count] - hash[:count]
+				# 	hash[:count] += hash[:count]
+				# end
 		end
 	memo
 	}
