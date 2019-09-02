@@ -77,6 +77,6 @@ calculate = apply_clearance(apply_coupons(consolidate_cart(cart), coupons)).redu
 	x
 }
 
-p calculate
+return calculate
 
 end
