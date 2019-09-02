@@ -31,7 +31,7 @@ def apply_coupons(items, coupons)
 			hash[:count] = hash.delete :num
 			hash[:price] = hash[:price] / hash[:count]
 
-				if memo_keys[:count] >= hash[:count]
+				if memo_keys[:count] >= hash[:count] && coupons.length >= 2
 					memo_keys[:count] = memo_keys[:count] - hash[:count]
 				end
 
