@@ -48,39 +48,39 @@ end
 
 
 
-def apply_clearance(cart)
+# def apply_clearance(cart)
 
-	discount_prices = cart.reduce({}) { |memo, sub_hash|
+# 	discount_prices = cart.reduce({}) { |memo, sub_hash|
 
-  	food_keys = sub_hash[0]
-  	food_values = sub_hash[1]
+#   	food_keys = sub_hash[0]
+#   	food_values = sub_hash[1]
 
-  		if food_values[:clearance]
-  			food_values[:price] = food_values[:price] - (food_values[:price] * 0.2).round(2)
-  		end
+#   		if food_values[:clearance]
+#   			food_values[:price] = food_values[:price] - (food_values[:price] * 0.2).round(2)
+#   		end
 
-	  memo[food_keys] = food_values
+# 	  memo[food_keys] = food_values
 
-	memo
-	}
+# 	memo
+# 	}
 
-return discount_prices
-end
+# return discount_prices
+# end
 
 
 
-def checkout(cart, coupons)
+# def checkout(cart, coupons)
 
-calculate = apply_clearance(apply_coupons(consolidate_cart(cart), coupons)).reduce(0) { |x, y|
+# calculate = apply_clearance(apply_coupons(consolidate_cart(cart), coupons)).reduce(0) { |x, y|
 
-x += y[1][:price]
+# x += y[1][:price]
 
-	if x >= 100.0
-		x = x - (x * 0.1).round(2)
-	end
-	x
-}
+# 	if x >= 100.0
+# 		x = x - (x * 0.1).round(2)
+# 	end
+# 	x
+# }
 
-return calculate
+# return calculate
 
-end
+# end
