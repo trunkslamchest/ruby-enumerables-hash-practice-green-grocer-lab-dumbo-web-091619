@@ -75,7 +75,7 @@ total = 0
 
 consol = consolidate_cart(cart)
 
-coupon = apply_coupons(consol, coupons).reduce({})  { |x, y|
+coupon = apply_coupons(consolidate_cart(cart), coupons).reduce({})  { |x, y|
 
 if y[1][:count] >= 1
 	y[1][:price] = y[1][:price] * y[1][:count]
