@@ -57,7 +57,7 @@ def apply_clearance(cart)
 		new_hash
 		}
 
-p sale_items
+return sale_items
 end
 
 # def checkout(cart, coupons)
