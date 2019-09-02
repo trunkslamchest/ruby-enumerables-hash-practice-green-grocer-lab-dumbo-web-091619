@@ -67,6 +67,8 @@ def apply_clearance(cart)
 return discount_prices
 end
 
+
+
 # def checkout(cart, coupons)
 #   # code here
 # end
