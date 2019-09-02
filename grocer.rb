@@ -71,8 +71,13 @@ end
 
 def checkout(cart, coupons)
 
-calculate = consolidate_cart(cart).reduce(0) { |x, y|
-		x += y[1][:price]
+calculate = apply_clearance(apply_coupons(consolidate_cart(cart), coupons)).reduce(0) { |x, y|
+
+x += y[1][:price]
+
+	if x >= 100.0
+		x = x - (x * 0.1).round(2)
+	end
 	x
 }
 
