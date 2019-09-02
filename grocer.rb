@@ -13,7 +13,7 @@ def consolidate_cart(cart)
 	return con_cart
 end
 
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def apply_coupons(items, coupons)
 
@@ -46,14 +46,14 @@ def apply_coupons(items, coupons)
 return coupon_add
 end
 
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def apply_clearance(cart)
 
-	discount_prices = cart.reduce({}) { |memo, sub_hash|
+	discount_prices = cart.reduce({}) { |memo, food_hash|
 
-  	food_keys = sub_hash[0]
-  	food_values = sub_hash[1]
+  	food_keys = food_hash[0]
+  	food_values = food_hash[1]
 
   		if food_values[:clearance]
   			food_values[:price] = food_values[:price] - (food_values[:price] * 0.2).round(2)
@@ -67,38 +67,51 @@ def apply_clearance(cart)
 return discount_prices
 end
 
-
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def checkout(cart, coupons)
 
-total = 0
+	total = 0
+	reduce_cart = consolidate_cart(cart)
 
-consol = consolidate_cart(cart)
+	do_coupons = apply_coupons(reduce_cart, coupons).reduce({})  { |memo, food_hash|
 
-coupon = apply_coupons(consolidate_cart(cart), coupons).reduce({})  { |x, y|
+		food_keys = food_hash[0]
+		food_values = food_hash[1]
 
-if y[1][:count] >= 1
-	y[1][:price] = y[1][:price] * y[1][:count]
-end
-	x[y[0]] = y[1]
-x
-}
+			if food_values[:count] >= 1
+				food_values[:price] = food_values[:price] * food_values[:count]
+			end
 
-sale = apply_clearance(coupon).reduce({}) { |x, y|
-if y[1][:count] > 0
-x[y[0]] = y[1]
-end
-x
-}
+		memo[food_keys] = food_values
 
-total = sale.reduce(0) { |x, y|
-x += y[1][:price]
+	memo
+	}
 
-	if x >= 100.0
-		x = x - (x * 0.1).round(2)
-	end
-	x
-}
+	do_sale = apply_clearance(do_coupons).reduce({}) { |memo, food_hash|
+
+		food_keys = food_hash[0]
+		food_values = food_hash[1]
+
+			if food_values[:count] > 0
+				memo[food_keys] = food_values
+			end
+
+	memo
+	}
+
+	total = do_sale.reduce(0) { |sum, food_hash|
+
+		food_values = food_hash[1]
+
+		sum += food_values[:price]
+
+			if sum > 100.0
+				sum = sum - (sum * 0.1).round(2)
+			end
+
+	sum
+	}
 
 return total
 end
