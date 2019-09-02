@@ -54,13 +54,13 @@ def apply_clearance(cart)
 
   	food_keys = sub_hash[0]
   	food_values = sub_hash[1]
-  
+
   		if food_values[:clearance]
   			food_values[:price] = food_values[:price] - (food_values[:price] * 0.2).round(2)
   		end
 
 	  memo[food_keys] = food_values
-	
+
 	memo
 	}
 
