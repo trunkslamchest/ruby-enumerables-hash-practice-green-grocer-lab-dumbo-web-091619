@@ -49,7 +49,8 @@ end
 
 
 def apply_clearance(cart)
-	sale_items = cart.reduce({}) { |memo, sub_hash|
+
+	discount_prices = cart.reduce({}) { |memo, sub_hash|
 
   	food_keys = sub_hash[0]
   	food_values = sub_hash[1]
@@ -62,7 +63,7 @@ def apply_clearance(cart)
 	memo
 	}
 
-p sale_items
+p discount_prices
 end
 
 # def checkout(cart, coupons)
