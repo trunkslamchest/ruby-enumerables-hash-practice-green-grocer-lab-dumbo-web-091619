@@ -63,7 +63,7 @@ def apply_clearance(cart)
 	memo
 	}
 
-p discount_prices
+return discount_prices
 end
 
 # def checkout(cart, coupons)
