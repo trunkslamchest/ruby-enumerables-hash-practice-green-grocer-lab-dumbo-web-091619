@@ -71,10 +71,11 @@ end
 
 def checkout(cart, coupons)
 
-# p apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
+calculate = consolidate_cart(cart).reduce(0) { |x, y|
+		x += y[1][:price]
+	x
+}
 
-# return apply_clearance(apply_coupons(consolidate_cart(cart), coupons))
-
-return consolidate_cart(cart)
+p calculate
 
 end
